@@ -15,8 +15,7 @@ def hamm(s, t):
     print sum([c != d for c, d in zip(s, t)])
 
 def prot(s):
-    prot = Seq(s).translate()
-    print prot[:str(prot).index('*')]  # stop at stop codon
+    print Seq(s).translate(to_stop = True)
 
 def iprb(s):
     k, m, n = [int(i) for i in s.split(' ')]
