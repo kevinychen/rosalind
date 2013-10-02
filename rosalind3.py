@@ -1,8 +1,7 @@
 import sys
 from Bio.Seq import Seq
-from Bio.Motif import Motif
 from Bio.Alphabet import IUPAC
-from Bio import SeqIO, Restriction
+from Bio import SeqIO, Restriction, motifs
 
 def reverse_palindrome(s):
     return str(s) == str(s.reverse_complement())
@@ -17,9 +16,8 @@ def iev(s):
     print 2 * (dist[0] + dist[1] + dist[2] + .75 * dist[3] + .5 * dist[4])
 
 def subs(s, t):
-    m = Motif(alphabet = IUPAC.unambiguous_dna)
-    m.add_instance(Seq(t, m.alphabet))
-    print ' '.join([str(pos + 1) for pos, seq in m.search_instances(Seq(s))])
+    m = motifs.create([Seq(t)])
+    print ' '.join([str(pos + 1) for pos, seq in m.instances.search(Seq(s))])
 
 def revp(stdin):
     seq = SeqIO.read(stdin, 'fasta').seq
