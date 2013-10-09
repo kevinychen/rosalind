@@ -12,6 +12,7 @@ def restriction_enzyme_search(s):
 
 def iev(s):
     # AA-AA, AA-Aa, AA-aa, Aa-Aa, Aa-aa, aa-aa
+    dist = map(int, s.split(' '))
     dist = [int(i) for i in s.split(' ')]
     print 2 * (dist[0] + dist[1] + dist[2] + .75 * dist[3] + .5 * dist[4])
 
